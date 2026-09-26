@@ -1,2 +1,2 @@
-# terraform-ecommerce-infrastructure
-Production-oriented AWS infrastructure implemented using Terraform
+# E-Commerce Infrastructure as Code
+Production-oriented AWS infrastructure implemented using Terraform.
