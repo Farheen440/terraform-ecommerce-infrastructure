@@ -17,7 +17,10 @@ provider "aws" {
 resource "aws_s3_bucket" "product_assets" {
   bucket = "ecommerce-dev-product-assets-farheen"
 
-  
+  tags = { Environment = "dev"
+    Purpose = "product-assets"
+  }
 }
+
 
 
