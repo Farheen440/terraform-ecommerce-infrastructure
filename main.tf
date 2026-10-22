@@ -13,16 +13,11 @@ provider "aws" {
   region = "ap-south-1"
 }
 
-# 3. Resource Configuration
-resource "aws_s3_bucket" "product_assets" {
-  bucket = local.bucket_name
 
-  tags = {
-    Environment = "dev"
-    Purpose     = "product-assets"
-  }
+module "storage" {
+  source      = "./modules/storage"
+  bucket_name = local.bucket_name
 }
-
 resource "aws_vpc" "main" {
   cidr_block = "10.0.0.0/16"
   tags = {
@@ -78,6 +73,8 @@ resource "aws_instance" "web" {
     Name        = "ecommerce-${var.environment}-web-${count.index + 1}"
     Environment = var.environment
     Purpose     = "ecommerce-web"
+
   }
 }
+
 
