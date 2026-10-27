@@ -9,5 +9,5 @@ output "bucket_arn" {
 }
 
 
-  
+
 

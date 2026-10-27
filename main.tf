@@ -23,10 +23,12 @@ resource "aws_vpc" "main" {
   tags = {
     Name        = "ecommerce-${var.environment}-vpc"
     Environment = var.environment
-    Purpose     = "ecommerce-network"
+    Project     = "ecommerce"
+    Owner       = "terraform"
   }
-
 }
+
+
 
 resource "aws_subnet" "public" {
   vpc_id            = aws_vpc.main.id
@@ -70,13 +72,23 @@ resource "aws_instance" "web" {
   vpc_security_group_ids = [
     aws_security_group.web_sg.id
   ]
+  lifecycle {
+    create_before_destroy = true
 
+    replace_triggered_by = [
+      aws_security_group.web_sg
+    ]
+  }
   tags = {
     Name        = "ecommerce-${var.environment}-web-${count.index + 1}"
     Environment = var.environment
     Purpose     = "ecommerce-web"
 
   }
+
+
 }
+
+
 
 

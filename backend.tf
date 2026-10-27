@@ -4,7 +4,7 @@ terraform {
     key                  = "terraform.tfstate"
     region               = "ap-south-1"
     workspace_key_prefix = "terraform-state"
-    use_lockfile         = true
+    use_lockfile         = false
     encrypt              = true
   }
 }
